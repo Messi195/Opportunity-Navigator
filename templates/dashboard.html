@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Office{% endblock %}
+
+{% block content %}
+
+<section class="dash-grid">
+
+
+<aside class="profile-card">
+
+    <p class="eyebrow">Your profile</p>
+
+    <h2 class="profile-name">{{ profile['full_name'] or g.user['username']}}</h2>
+
+    <dl class="profile-facts">
+
+        <div><dt>Grade</dt><dd>{{profile['grade'] or '-'}}</dd></div>
+
+        <div><dt>Strong subjects</dt><dd>{{profile['subjects'] or '-'}}</dd></div>
+
+        <div><dt>Interests</dt><dd>{{profile['interests'] or '-'}}</dd></div>
+
+        <div><dt>Achievements</dt><dd>{{profile['achievements'] or '-'}}</dd></div>
+
+        <div><dt>Career goal</dt><dd>{{profile['career_goal'] or '-'}}</dd></div>
+
+    </dl>
+
+    <a href="{{ url_for('profile_edit') }}" class="btn btn-ghost btn-sm btn-block">{{ 'Complete profile' if not profile_filled else 'Edit profile'}}</a>
+
+</aside>
+
+<section class="recs-panel">
+
+    <div class="recs-header">
+
+        <div>
+
+            <p class="eyebrow">Your AI-powered path</p>
+
+            <h2 class="section-title">Recommendations for you</h2>
+
+        </div>
+
+        <form method="post" action="{{ url_for('generate_recommendations') }}">
+
+            <button type="submit" class="btn btn-primary"
+                {% if not profile_filled %}disabled title='Complete your profile first'{% endif %}>
+
+                {{ 'Update recommendations' if recs else 'Find opportunities'}}
+
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if not profile_filled %}
+
+        <p class="empty-state">
+
+            Your profile is empty - <a href="{{ url_for('profile_edit') }}">complete it</a> so the AI can find opportunities that actually match your interests and goals.
+
+        </p>
+
+    {% elif not recs %}
+
+        <p class="empty-state">
+
+            Your profile is ready. Click "Find opportunities" and the AI will analyze your information to find the options that best match you.
+
+        </p>
+
+    {% else %}
+
+        <ol class="rec-list">
+
+          {% for r in recs %}
+
+          {% set pct = r['score'] or 0 %} 
+
+          <li class="rec-item">
+
+            <span class="rec-step" aria-hidden="true">{{ loop.index }}</span>
+
+            <div class="rec-body">
+
+              <div class="rec-head">
+
+                <span class="rec-category">{{ CATEGORY_LABELS.get(r['category'], r['category']) }}</span>
+
+                <span class="rec-match" title="How well this matches your profile">
+
+                  <span class="rec-match-bar"><i style="width: {{ pct }}%"></i></span>
+
+                  <span class="rec-match-value">{{ pct }}%</span>
+
+                </span>
+
+              </div>
+
+              <h3 class="rec-title">{{ r['title'] }}</h3>
+
+              <p class="rec-reason">{{ r['reason'] }}</p>
+
+              <div class="rec-foot">
+
+                <span class="rec-meta">Deadline: <b>{{ r['deadline'] or '—' }}</b></span>
+
+                {% if r['link'] %}
+
+                  <a href="{{ r['link'] }}" target="_blank" rel="noopener" class="rec-link">Learn more →</a>
+
+                {% endif %}
+
+              </div>
+
+            </div>
+
+          </li>
+
+          {% endfor %}
+
+        </ol>
+
+      {% endif %}       
+
+</section>
+
+
+</section>
+
+{% endblock %}

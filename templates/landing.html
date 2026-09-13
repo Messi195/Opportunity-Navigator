@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Office{% endblock %}
+
+{% block content %}
+
+
+<section class="hero">
+
+    <div class="hero-copy">
+
+        <p class="eyebrow">For teenagers who want to achieve more</p>
+
+        <h1 class="hero-title">Tell us about yourself -<br>and find your path to new opportunities</h1>
+
+        <p class="hero-sub">Scholarships, competitions, internships, volunteering opportunities, and mentors are spread across hundreds of different websites. We bring them together in one place and help you find the opportunities that fit your goals and interests.</p>
+
+        <div class="hero-actions">
+
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">Create a free profile</a>
+
+            <a href="{{ url_for('auth.login') }}" class="btn btn-ghost btn-lg">I already have an account</a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-route" aria-hidden="true">
+
+        <div class="route-line"></div>
+
+        <div class="route-stop">
+
+            <span class="route-dot">1</span>
+
+            <div class="route-label"><strong>Profile</strong><span>Tell us who you are, what you're good at, and what you want to achieve</span></div>
+
+        </div>
+
+        <div class="route-stop">
+
+            <span class="route-dot">2</span>
+
+            <div class="route-label"><strong>AI Analysis</strong><span>Your strengths and goals → a personalized analysis</span></div>
+
+        </div>
+
+        <div class="route-stop">
+
+            <span class="route-dot">3</span>
+
+            <div class="route-label"><strong>Opportunities</strong><span>Scholarships, competitions, internships, and volunteering</span></div>
+
+        </div>
+
+        <div class="route-stop">
+
+            <span class="route-dot">4</span>
+
+            <div class="route-label"><strong>Goals</strong><span>A clear path toward your future</span></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section-block">
+
+    <h2 class="section-title">What's Included?</h2>
+
+    <div class="card-grid">
+
+        <article class="feature-card">
+
+            <span class="feature-tag">01 — Scholarships</span>
+
+            <p>
+
+                Grants and scholarships for talented students, including opportunities that are easy to overlook.
+
+            </p>
+
+        </article>
+
+        <article class="feature-card">
+
+            <span class="feature-tag">02 — Competitions</span>
+
+            <p>
+
+                Academic competitions and Olympiads that can help you build experience and strengthen your university applications.
+
+            </p>
+
+        </article>
+
+        <article class="feature-card">
+
+            <span class="feature-tag">03 — Internships</span>
+
+            <p>
+
+                Real-world projects and opportunities to learn from experienced mentors while you're still in school.
+
+            </p>
+
+        </article>
+
+        <article class="feature-card">
+
+            <span class="feature-tag">04 — Volunteering</span>
+
+            <p>
+
+                Meaningful projects that help you build experience, grow your skills, and discover what you enjoy.
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

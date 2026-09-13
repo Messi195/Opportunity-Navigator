@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}All Opportunities{% endblock %}
+
+{% block content %}
+
+<section class="setion_block">
+
+
+<p class="eyebrow">Explore opportunities</p>
+
+<h1 class="section-title">All Opportunities</h1>
+
+<div class="filter-row">
+
+    <a href="{{ url_for('opportunities') }}" class="chip {% if not active_category %} is-active{% endif %}">
+        All
+    </a>
+
+    {% for key, label in CATEGORY_LABELS.items() %}
+
+        <a href="{{ url_for('opportunities', category=key) }}" class="chip {% if active_category==key %}is-active{% endif %}">
+            {{ label }}
+        </a>
+
+    {% endfor %}
+
+</div>
+
+<div class="opp-grid">
+
+    {% for o in opportunities %}
+
+    <article class="opp-card">
+
+        <span class="rec-category">
+            {{ CATEGORY_LABELS.get(o['category'], o['category']) }}
+        </span>
+
+        <h3 class="rec-title">
+            {{ o['title'] }}
+        </h3>
+
+        <p class="rec-reason">
+            {{ o['description'] }}
+        </p>
+
+        <p class="rec-meta">
+            Who it's for: {{ o['audience'] }}
+        </p>
+
+        <p class="rec-meta">
+            Deadline: {{ o['deadline'] }}
+        </p>
+
+        {% if o['link'] %}
+
+            <a href="{{ o['link'] }}" target="_blank" rel="noopener" class="rec-link">
+                Learn more →
+            </a>
+
+        {% endif %}
+
+    </article>
+
+    {% endfor %}
+
+</div>
+
+
+</section>
+
+{% endblock %}

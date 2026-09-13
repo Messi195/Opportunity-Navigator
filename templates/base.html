@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Home{% endblock %} · Opportunity Navigator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <a href="{{ url_for('landing') }}" class="brand">
+
+            <span class="brand-mark">⊕</span>
+
+            <span class="brand-text">
+                Opportunity<br>
+                Navigator
+            </span>
+
+        </a>
+
+        <nav class="topbar-nav">
+
+            {% if g.user %}
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-link {% if request.endpoint == 'dashboard' %}is-active{% endif %}"
+                >
+                    Profile
+                </a>
+
+                <a
+                    href="{{ url_for('opportunities') }}"
+                    class="nav-link {% if request.endpoint == 'opportunities' %}is-active{% endif %}"
+                >
+                    Opportunities
+                </a>
+
+                <span class="nav-user">
+                    {{ g.user['username'] }}
+                </span>
+
+                <a
+                    href="{{ url_for('auth.logout') }}"
+                    class="btn btn-ghost btn-sm"
+                >
+                    Log out
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{{ url_for('auth.login') }}"
+                    class="nav-link"
+                >
+                    Log in
+                </a>
+
+                <a
+                    href="{{ url_for('auth.register') }}"
+                    class="btn btn-primary btn-sm"
+                >
+                    Create an Account
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+    <main class="page">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                <div class="flash_stack">
+
+                    {% for category, message in messages %}
+
+                        <div class="flash flash-{{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+    <footer class="site-footer">
+
+        <span>
+            Opportunity Navigator · Helping everyone find the right educational opportunities.
+        </span>
+
+    </footer>
+
+</body>
+
+</html>
+

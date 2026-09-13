@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+
+<form method="POST" class="auth-card auth-card--wide">
+
+    <p class="eyebrow">The more details you provide, the better the AI can match opportunities to you.</p>
+
+    <h1 class="auth-title">Your Profile</h1>
+
+    <label class="field">
+
+        <span>Name</span>
+
+        <input type="text" name="full-name" value="{{ profile['full-name'] }}">
+
+    </label>
+
+    <label class="field">
+
+        <span>Grade / Course</span>
+
+        <input type="text" name="grade" value="{{ profile['grade'] }}" placeholder="For example: 9th grade">
+
+    </label>
+
+    <label class="field">
+
+        <span>Strong Subjects</span>
+
+        <textarea rows="2" placeholder="Math, computer science..." name="subjects">{{ profile['subjects'] }}</textarea>
+
+    </label>
+
+    <label class="field">
+
+        <span>Interests / Hobbies</span>
+
+        <textarea rows="2" placeholder="Coding, design, biology..." name="interests">{{ profile['interests'] }}</textarea>
+
+    </label>
+
+    <label class="field">
+
+        <span>Achievements</span>
+
+        <textarea rows="2" placeholder="Awards, projects, certificates..." name="achievements">{{ profile['achievements'] }}</textarea>
+
+    </label>
+
+    <label class="field">
+
+        <span>Career Goals</span>
+
+        <textarea rows="2" placeholder="For example: I want to work in technology..." name="career_goal">{{ profile['career_goal'] }}</textarea>
+
+    </label>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Save Profile</button>
+
+</form>
+
+
+</section>
+
+{% endblock %}
