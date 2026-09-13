@@ -1,41 +1,30 @@
-Opportunity Navigator
+# Opportunity Navigator
 
-Opportunity Navigator is a Flask web app that helps students discover opportunities that match their interests, skills, achievements, and career goals.
+**Opportunity Navigator** is a Flask web app that helps students discover opportunities that match their interests, skills, achievements, and career goals.
 
-Features
+## Features
 
-🔐 Student registration and login
+- 🔐 Student registration and login
+- 👤 Student profile with interests, strengths, achievements, and career goals
+- 🎯 Personalized opportunity recommendations
+- 🤖 AI-powered matching and career guidance
+- 📚 Opportunity discovery for scholarships, competitions, internships, volunteering, and mentorship
+- 🗄️ SQLite database for storing users, profiles, and opportunities
+- 🎨 Clean, responsive web interface
 
-👤 Student profile with interests, strengths, achievements, and career goals
+## Tech Stack
 
-🎯 Personalized opportunity recommendations
+- **Python**
+- **Flask**
+- **SQLite**
+- **HTML / CSS**
+- **Jinja2**
+- **AI API integration**
+- **python-dotenv**
 
-🤖 AI-powered matching and career guidance
+## Project Structure
 
-📚 Opportunity discovery for scholarships, competitions, internships, volunteering, and mentorship
-
-🗄️ SQLite database for storing users, profiles, and opportunities
-
-🎨 Clean, responsive web interface
-
-Tech Stack
-
-Python
-
-Flask
-
-SQLite
-
-HTML / CSS
-
-Jinja2
-
-AI API integration
-
-python-dotenv
-
-Project Structure
-
+```text
 diploy/
 ├── app.py
 ├── ai.py
@@ -56,85 +45,90 @@ diploy/
     └── auth/
         ├── login.html
         └── register.html
+```
 
-Getting Started
+## Getting Started
 
-1. Clone the project
+### 1. Clone the project
 
+```bash
 git clone <your-repository-url>
 cd diploy
+```
 
-2. Create a virtual environment
+### 2. Create a virtual environment
 
+```bash
 python -m venv venv
+```
 
 Activate it on Windows:
 
+```bash
 venv\Scripts\activate
+```
 
 On macOS/Linux:
 
+```bash
 source venv/bin/activate
+```
 
-3. Install dependencies
+### 3. Install dependencies
 
+```bash
 pip install -r requiremts.txt
+```
 
-4. Configure environment variables
+### 4. Configure environment variables
 
-Create a .env file and add your AI API configuration.
+Create a `.env` file and add your AI API configuration.
 
 Example:
 
+```env
 SECRET_KEY=your_secret_key
 BOTHUB_API_KEY=your_api_key
+```
 
 Never commit real API keys or other secrets to GitHub.
 
-5. Initialize the database
+### 5. Initialize the database
 
-Use the provided schema.sql to create the required SQLite tables.
+Use the provided `schema.sql` to create the required SQLite tables.
 
-6. Run the app
+### 6. Run the app
 
+```bash
 python app.py
+```
 
 Then open the local address shown by Flask in your browser.
 
-How It Works
+## How It Works
 
-A student creates an account.
+1. A student creates an account.
+2. The student completes their profile.
+3. Opportunity Navigator uses the profile information to understand the student's goals and interests.
+4. The AI system helps match the student with relevant opportunities.
+5. Recommended opportunities are displayed through the dashboard.
 
-The student completes their profile.
+## Configuration
 
-Opportunity Navigator uses the profile information to understand the student's goals and interests.
+Keep private configuration such as API keys and secret keys inside `.env`.
 
-The AI system helps match the student with relevant opportunities.
+For production, use a strong secret key and configure environment variables through your hosting provider instead of committing `.env` to the repository.
 
-Recommended opportunities are displayed through the dashboard.
+## Future Improvements
 
-Configuration
+- Add more opportunity sources
+- Add filters by deadline, category, and eligibility
+- Add saved opportunities
+- Add email notifications for deadlines
+- Improve AI recommendation accuracy
+- Add student progress tracking
+- Deploy the application online
 
-Keep private configuration such as API keys and secret keys inside .env.
-
-For production, use a strong secret key and configure environment variables through your hosting provider instead of committing .env to the repository.
-
-Future Improvements
-
-Add more opportunity sources
-
-Add filters by deadline, category, and eligibility
-
-Add saved opportunities
-
-Add email notifications for deadlines
-
-Improve AI recommendation accuracy
-
-Add student progress tracking
-
-Deploy the application online
-
-License
+## License
 
 This project is for educational and personal development purposes.
